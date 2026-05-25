@@ -1102,18 +1102,18 @@ async function saveLibelle() {
 // BIBLIOTHÈQUE
 // ============================================================
 async function loadLibrary() {
-  const body    = document.getElementById('library-body');
   const loading = document.getElementById('library-loading');
   const empty   = document.getElementById('library-empty');
+  const cards   = document.getElementById('library-cards');
 
-  body.innerHTML = '';
+  if (cards) cards.innerHTML = '';
   loading.style.display = 'flex';
   empty.style.display   = 'none';
 
   try {
     const data = await callGAS('list');
     allLibelles = data.libelles || [];
-    allLibelles.sort((a, b) => (a.prestation || '').localeCompare(b.prestation || '', 'fr'));
+    allLibelles.sort((a, b) => (a.libelle || '').localeCompare(b.libelle || '', 'fr'));
     renderLibrary(allLibelles);
   } catch (err) {
     showToast('Erreur chargement bibliothèque : ' + err.message, 'error');
