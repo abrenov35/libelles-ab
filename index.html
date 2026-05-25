@@ -942,7 +942,7 @@ body {
       dans la constante GAS_URL ci-dessous.
    ============================================================ */
 
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbyh-bqxkmHhpUOVcg0vFULmZ5Cpt48UW6zTlqJDBxo_COe0TURrQVT24qhN33kImBvJ/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw3n93qc354yQyN4qv2glwqJEF1KBcEKtUpxc-Q_QW7sLrkibaShYT6wjt4GZXfms8J/exec';
 
 // ---- État de l'application ----
 let proposals    = [];   // historique des propositions IA
@@ -1246,13 +1246,20 @@ async function deleteLibelle(id) {
 // COMMUNICATION AVEC GOOGLE APPS SCRIPT
 // ============================================================
 async function callGAS(action, params = {}) {
-  const payload = { action, ...params };
+  let resp;
 
-  const resp = await fetch(GAS_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(payload),
-  });
+  if (action === 'list') {
+    // GET pour la liste
+    resp = await fetch(GAS_URL + '?action=list', { method: 'GET' });
+  } else {
+    // POST pour les autres actions
+    const payload = { action, ...params };
+    resp = await fetch(GAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    });
+  }
 
   if (!resp.ok) throw new Error(`Erreur réseau (${resp.status})`);
 
