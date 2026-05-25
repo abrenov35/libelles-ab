@@ -830,6 +830,10 @@ body {
           </div>
 
           <div class="action-row">
+            <button class="btn btn-ghost" onclick="resetGenerator()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 12 8 7 8 10 21 10 21 14 8 14 8 17 3 12"/></svg>
+              Nouvelle prestation
+            </button>
             <button class="btn btn-ghost" id="btn-prev" onclick="prevProposal()" disabled>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
               Précédente
@@ -1020,6 +1024,23 @@ function pushProposal(data) {
   proposals = proposals.slice(0, currentIndex + 1);
   proposals.push(data);
   currentIndex = proposals.length - 1;
+}
+
+function resetGenerator() {
+  // Remet le générateur à zéro
+  document.getElementById('prestation').value = '';
+  document.getElementById('prestation').focus();
+  document.getElementById('libelle-display').textContent = 'Le libellé généré par l\'IA apparaîtra ici…';
+  document.getElementById('libelle-display').style.color = '#b0a79e';
+  document.getElementById('prix-bas').value = '';
+  document.getElementById('prix-haut').value = '';
+  document.getElementById('unite').selectedIndex = 0;
+  document.getElementById('btn-prev').disabled = true;
+  document.getElementById('btn-next').disabled = true;
+  proposals = [];
+  currentIndex = -1;
+  styleIndex = 0;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function prevProposal() {
