@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Générateur de libellés — AB RENOV 35</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+/* ===================================================
+   AB RENOV 35 — Charte graphique officielle
+   Couleurs : #162D49 (marine), #F3EAE2 (crème), #A495C3 (lavande)
+   Typos    : Barlow Condensed (titres) + Barlow (corps)
+   =================================================== */
+
+:root {
+  --navy:      #162D49;
+  --navy-mid:  #1e3d61;
+  --navy-lt:   #e8eef5;
+  --cream:     #F3EAE2;
+  --cream-dk:  #e8ddd4;
+  --lavender:  #A495C3;
+  --lav-lt:    #ede9f5;
+  --white:     #ffffff;
+  --stone-100: #f7f4f1;
+  --stone-200: #e9e4df;
+  --stone-300: #d5cdc6;
+  --stone-400: #b0a79e;
+  --stone-500: #857d75;
+  --stone-600: #5e5750;
+  --stone-700: #3d3830;
+  --green:     #2d6a4f;
+  --red:       #c0392b;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 12px;
+
+  --shadow-sm: 0 1px 4px rgba(22,45,73,.08);
+  --shadow:    0 4px 20px rgba(22,45,73,.10);
+  --shadow-lg: 0 12px 48px rgba(22,45,73,.15);
+
+  --font-title: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body:  'Barlow', system-ui, sans-serif;
+
+  --header-h: 68px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--stone-700);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: var(--navy);
+  box-shadow: 0 2px 16px rgba(22,45,73,.25);
+}
+
+.header-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* — Brand — */
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-svg { width: 100%; height: 100%; }
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: .12em;
+  color: var(--white);
+  line-height: 1;
+}
+
+.brand-tagline {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* — Nav — */
+.nav { display: flex; gap: 6px; }
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,.22);
+  border-radius: var(--radius-sm);
+  color: rgba(255,255,255,.7);
+  font-family: var(--font-title);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,.1);
+  color: var(--white);
+  border-color: rgba(255,255,255,.4);
+}
+
+.nav-btn.active {
+  background: rgba(255,255,255,.15);
+  color: var(--white);
+  border-color: rgba(255,255,255,.5);
+}
+
+/* ══════════════════════════════
+   PAGES
+══════════════════════════════ */
+.page { display: none; }
+.page.active { display: block; }
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 44px 28px 100px;
+}
+
+/* ══════════════════════════════
+   PAGE HEADER
+══════════════════════════════ */
+.page-header { margin-bottom: 32px; }
+
+.page-eyebrow {
+  font-family: var(--font-title);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  margin-bottom: 8px;
+}
+
+.page-header h1 {
+  font-family: var(--font-title);
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.page-sub {
+  color: var(--stone-500);
+  font-size: 14.5px;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════
+   CARD
+══════════════════════════════ */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stone-200);
+  box-shadow: var(--shadow);
+  padding: 36px;
+}
+
+.generator-card { padding: 40px; }
+
+/* ══════════════════════════════
+   FORM
+══════════════════════════════ */
+.field-group { display: flex; flex-direction: column; gap: 9px; }
+
+.label {
+  font-family: var(--font-title);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--stone-600);
+}
+
+.textarea, .input {
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--stone-100);
+  border: 1.5px solid var(--stone-200);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--stone-700);
+  transition: border-color .18s, box-shadow .18s, background .18s;
+  outline: none;
+  appearance: none;
+}
+
+.textarea { resize: vertical; min-height: 96px; }
+
+.textarea:focus, .input:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(22,45,73,.1);
+  background: var(--white);
+}
+
+.textarea::placeholder, .input::placeholder { color: var(--stone-400); }
+
+.select {
+  padding-right: 38px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23857d75' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  cursor: pointer;
+}
+
+.input-with-unit { position: relative; }
+.input-with-unit .input { padding-right: 38px; }
+.unit-suffix {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: var(--stone-400);
+  pointer-events: none;
+  font-weight: 500;
+}
+
+/* ══════════════════════════════
+   PRIX GRID
+══════════════════════════════ */
+.prix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+/* ══════════════════════════════
+   BUTTONS
+══════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all .18s ease;
+  white-space: nowrap;
+}
+
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--navy-mid);
+  border-color: var(--navy-mid);
+  box-shadow: 0 4px 16px rgba(22,45,73,.28);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+.btn-outline:hover:not(:disabled) {
+  background: var(--navy-lt);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--stone-500);
+  border-color: var(--stone-200);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--stone-100);
+  color: var(--stone-700);
+  border-color: var(--stone-300);
+}
+
+.btn-sm { padding: 8px 14px; font-size: 11.5px; }
+
+.btn-row { margin-top: 22px; display: flex; gap: 12px; }
+
+/* Loading spinner sur bouton */
+.btn-loading { position: relative; color: transparent !important; }
+.btn-loading svg { opacity: 0; }
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid rgba(255,255,255,.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .65s linear infinite;
+}
+.btn-ghost.btn-loading::after,
+.btn-outline.btn-loading::after {
+  border-color: rgba(22,45,73,.2);
+  border-top-color: var(--navy);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ══════════════════════════════
+   RÉSULTAT
+══════════════════════════════ */
+.divider {
+  height: 1px;
+  background: var(--cream-dk);
+  margin: 32px 0;
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.libelle-display {
+  background: var(--cream);
+  border: 1.5px solid var(--cream-dk);
+  border-left: 4px solid var(--navy);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  font-size: 15px;
+  color: var(--stone-700);
+  line-height: 1.75;
+  min-height: 88px;
+  font-style: italic;
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--lav-lt);
+  border: 1px solid #c9bfe0;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 12.5px;
+  color: #5a4a7a;
+  line-height: 1.55;
+}
+.notice svg { flex-shrink: 0; margin-top: 1px; color: var(--lavender); }
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ══════════════════════════════
+   TOAST
+══════════════════════════════ */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--navy);
+  color: var(--white);
+  padding: 13px 26px;
+  border-radius: 2px;
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: all .22s ease;
+  z-index: 500;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--green); }
+.toast.error   { background: var(--red); }
+
+/* ══════════════════════════════
+   BIBLIOTHÈQUE
+══════════════════════════════ */
+.library-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.search-wrapper { position: relative; flex: 1; }
+.search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--stone-400);
+  pointer-events: none;
+}
+.search-input { padding-left: 40px; }
+
+.library-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.library-table th {
+  text-align: left;
+  padding: 11px 16px;
+  background: var(--navy);
+  font-family: var(--font-title);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  border: none;
+}
+.library-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.library-table th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
+
+.library-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--stone-100);
+  vertical-align: top;
+  color: var(--stone-600);
+  line-height: 1.5;
+}
+.library-table tr:last-child td { border-bottom: none; }
+.library-table tr:hover td { background: var(--stone-100); }
+
+.col-actions { width: 120px; text-align: right; }
+.td-prestation { max-width: 140px; font-weight: 500; color: var(--navy); }
+.td-libelle    { max-width: 270px; font-style: italic; }
+
+.td-actions { display: flex; gap: 5px; justify-content: flex-end; }
+
+.prix-badge {
+  display: inline-block;
+  background: var(--cream);
+  border: 1px solid var(--cream-dk);
+  border-radius: 3px;
+  padding: 3px 9px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--stone-600);
+  white-space: nowrap;
+}
+
+.unit-badge {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 3px;
+  padding: 3px 9px;
+  font-family: var(--font-title);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.date-cell {
+  font-size: 12px;
+  color: var(--stone-400);
+  white-space: nowrap;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 64px 24px;
+  color: var(--stone-400);
+  text-align: center;
+}
+.empty-state p   { font-size: 15px; color: var(--stone-500); }
+.empty-state span { font-size: 13px; }
+
+.loading-state {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 48px 24px;
+  color: var(--stone-400);
+  font-size: 14px;
+  justify-content: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid var(--cream-dk);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+
+/* ══════════════════════════════
+   MODAL
+══════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(22,45,73,.5);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(3px);
+}
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border-top: 4px solid var(--navy);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 580px;
+  animation: modal-in .2s ease;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(.96) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 30px;
+  border-bottom: 1px solid var(--stone-200);
+}
+
+.modal-header h3 {
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--stone-400);
+  padding: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color .15s;
+}
+.modal-close:hover { color: var(--navy); }
+
+.modal-body {
+  padding: 26px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px 30px;
+  border-top: 1px solid var(--stone-200);
+  background: var(--stone-100);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 700px) {
+  .container { padding: 28px 18px 80px; }
+  .card, .generator-card { padding: 24px 20px; }
+  .header-inner { padding: 0 18px; }
+
+  .brand-tagline { display: none; }
+  .brand-name    { font-size: 18px; }
+
+  .page-header h1 { font-size: 30px; }
+
+  .prix-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .prix-grid .field-group:last-child { grid-column: 1 / -1; }
+
+  .action-row { flex-direction: column; }
+  .action-row .btn { width: 100%; justify-content: center; }
+
+  .library-table { display: block; overflow-x: auto; white-space: nowrap; }
+
+  .modal { max-width: 100%; }
+  .modal-body, .modal-header, .modal-footer { padding: 18px 20px; }
+  .modal .prix-grid { grid-template-columns: 1fr; }
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 56 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="brand-svg">
+            <path d="M3 37 L14 5 L20 5 L20 14 L14 14 L14 19 L20 19 L25 37" stroke="white" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            <line x1="9" y1="25" x2="21" y2="25" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <path d="M30 5 L30 37" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <path d="M30 5 L41 5 Q49 5 49 12 Q49 19 30 19" stroke="white" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            <path d="M30 19 L42 19 Q52 19 52 28 Q52 37 30 37" stroke="white" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">RENOV</span>
+          <span class="brand-tagline">AMÉNAGEMENT ET RÉNOVATION</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" data-page="generator" onclick="showPage('generator')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Générateur
+        </button>
+        <button class="nav-btn" data-page="library" onclick="showPage('library')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Bibliothèque
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="page-generator" class="page active">
+    <div class="container">
+      <div class="page-header">
+        <p class="page-eyebrow">Outil interne</p>
+        <h1>Générateur de libellé</h1>
+        <p class="page-sub">Saisissez une prestation brute — l'IA génère un libellé professionnel, clair et directement intégrable dans votre devis.</p>
+      </div>
+
+      <div class="card generator-card">
+        <div class="field-group">
+          <label class="label" for="prestation">Prestation à reformuler</label>
+          <textarea id="prestation" class="textarea" placeholder="Ex : dépose faïence salle de bain, pose parquet stratifié chambre, peinture murs et plafond salon…" rows="3"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="btn-generate" onclick="generateLibelle()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Générer le libellé
+          </button>
+        </div>
+
+        <div class="result-section" id="result-section">
+          <div class="divider"></div>
+
+          <div class="field-group">
+            <label class="label">Libellé proposé</label>
+            <div class="libelle-display" id="libelle-display" style="color:#b0a79e;font-style:normal;">Le libellé généré par l'IA apparaîtra ici…</div>
+          </div>
+
+          <div class="prix-grid">
+            <div class="field-group">
+              <label class="label" for="prix-bas">Prix bas constaté</label>
+              <div class="input-with-unit">
+                <input type="number" id="prix-bas" class="input" step="0.01" min="0" />
+                <span class="unit-suffix">€</span>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="label" for="prix-haut">Prix haut constaté</label>
+              <div class="input-with-unit">
+                <input type="number" id="prix-haut" class="input" step="0.01" min="0" />
+                <span class="unit-suffix">€</span>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="label" for="unite">Unité</label>
+              <select id="unite" class="input select">
+                <option value="unité">unité</option>
+                <option value="m²">m²</option>
+                <option value="ml">ml</option>
+                <option value="m³">m³</option>
+                <option value="forfait">forfait</option>
+                <option value="heure">heure</option>
+                <option value="jour">jour</option>
+                <option value="autre">autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="notice">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Fourchette indicative à vérifier selon le chantier, l'état du support, l'accessibilité, les fournitures et les conditions d'intervention.
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-ghost" id="btn-prev" onclick="prevProposal()" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+              Précédente
+            </button>
+            <button class="btn btn-ghost" onclick="regenerate()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              Régénérer
+            </button>
+            <button class="btn btn-outline" onclick="copyLibelle()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copier le libellé
+            </button>
+            <button class="btn btn-primary" onclick="saveLibelle()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Valider et enregistrer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <main id="page-library" class="page">
+    <div class="container">
+      <div class="page-header">
+        <p class="page-eyebrow">Archive</p>
+        <h1>Bibliothèque</h1>
+        <p class="page-sub">Tous les libellés validés, classés par ordre alphabétique.</p>
+      </div>
+
+      <div class="card">
+        <div class="library-toolbar">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="search-input" class="input search-input" placeholder="Rechercher dans la bibliothèque…" oninput="filterLibrary()" />
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="loadLibrary()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Actualiser
+          </button>
+        </div>
+
+        <div id="library-loading" class="loading-state" style="display:none">
+          <div class="spinner"></div> Chargement…
+        </div>
+
+        <div id="library-empty" class="empty-state" style="display:none">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <p>Aucun libellé enregistré pour l'instant.</p>
+          <span>Générez et validez votre premier libellé pour commencer la bibliothèque.</span>
+        </div>
+
+        <div id="library-table-wrapper">
+          <table class="library-table" id="library-table">
+            <thead>
+              <tr>
+                <th>Prestation brute</th>
+                <th>Libellé validé</th>
+                <th>Prix bas</th>
+                <th>Prix haut</th>
+                <th>Unité</th>
+                <th>Date</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="library-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="modal-overlay" class="modal-overlay" onclick="closeModal()" style="display:none">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Modifier le libellé</h3>
+        <button class="modal-close" onclick="closeModal()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-id" />
+        <div class="field-group">
+          <label class="label">Libellé</label>
+          <textarea id="edit-libelle" class="textarea" rows="4"></textarea>
+        </div>
+        <div class="prix-grid">
+          <div class="field-group">
+            <label class="label">Prix bas (€)</label>
+            <input type="number" id="edit-prix-bas" class="input" step="0.01" min="0" />
+          </div>
+          <div class="field-group">
+            <label class="label">Prix haut (€)</label>
+            <input type="number" id="edit-prix-haut" class="input" step="0.01" min="0" />
+          </div>
+          <div class="field-group">
+            <label class="label">Unité</label>
+            <select id="edit-unite" class="input select">
+              <option value="unité">unité</option>
+              <option value="m²">m²</option>
+              <option value="ml">ml</option>
+              <option value="m³">m³</option>
+              <option value="forfait">forfait</option>
+              <option value="heure">heure</option>
+              <option value="jour">jour</option>
+              <option value="autre">autre</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeModal()">Annuler</button>
+        <button class="btn btn-primary" onclick="saveEdit()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script>
+/* ============================================================
+   AB RENOV 35 — script.js
+   ============================================================
+   ➜  IMPORTANTE : collez l'URL de votre Google Apps Script
+      dans la constante GAS_URL ci-dessous.
+   ============================================================ */
+
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbz9rDP9Ro0U9QzJF_X-nykw6GHXFn0hDzRFRv1gjaBfM_74EjFosFdaMdSbvZR1EcqE/exec';
+
+// ---- État de l'application ----
+let proposals    = [];   // historique des propositions IA
+let currentIndex = -1;   // index courant dans proposals
+let allLibelles  = [];   // cache de la bibliothèque
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelector(`[data-page="${page}"]`).classList.add('active');
+
+  if (page === 'library') loadLibrary();
+}
+
+// ============================================================
+// GÉNÉRATEUR — Appel IA via GAS
+// ============================================================
+async function generateLibelle() {
+  const prestation = document.getElementById('prestation').value.trim();
+  if (!prestation) { showToast('Veuillez saisir une prestation.', 'error'); return; }
+
+  const btn = document.getElementById('btn-generate');
+  btn.classList.add('btn-loading');
+  btn.disabled = true;
+
+  try {
+    const result = await callGAS('generate', { prestation });
+    pushProposal(result);
+    renderResult();
+  } catch (err) {
+    showToast('Erreur : ' + err.message, 'error');
+  } finally {
+    btn.classList.remove('btn-loading');
+    btn.disabled = false;
+  }
+}
+
+async function regenerate() {
+  const prestation = document.getElementById('prestation').value.trim();
+  if (!prestation) { showToast('Veuillez saisir une prestation.', 'error'); return; }
+
+  const btn = document.querySelector('[onclick="regenerate()"]');
+  btn.classList.add('btn-loading');
+  btn.disabled = true;
+
+  try {
+    const result = await callGAS('generate', { prestation });
+    pushProposal(result);
+    renderResult();
+  } catch (err) {
+    showToast('Erreur lors de la régénération : ' + err.message, 'error');
+  } finally {
+    btn.classList.remove('btn-loading');
+    btn.disabled = false;
+  }
+}
+
+function pushProposal(data) {
+  // Tronquer l'historique après le point courant si on est en arrière
+  proposals = proposals.slice(0, currentIndex + 1);
+  proposals.push(data);
+  currentIndex = proposals.length - 1;
+}
+
+function prevProposal() {
+  if (currentIndex <= 0) return;
+  currentIndex--;
+  renderResult();
+}
+
+function renderResult() {
+  const data = proposals[currentIndex];
+  const el = document.getElementById('libelle-display');
+  el.textContent = data.libelle || '';
+  el.style.color = '';
+  el.style.fontStyle = '';
+  document.getElementById('prix-bas').value  = data.prix_bas  ?? '';
+  document.getElementById('prix-haut').value = data.prix_haut ?? '';
+
+  const uniteSelect = document.getElementById('unite');
+  const uniteVal    = (data.unite || 'm²').toLowerCase();
+  const opts        = [...uniteSelect.options].map(o => o.value.toLowerCase());
+  uniteSelect.selectedIndex = opts.includes(uniteVal) ? opts.indexOf(uniteVal) : 0;
+
+  document.getElementById('btn-prev').disabled = currentIndex === 0;
+}
+
+// ============================================================
+// COPIER
+// ============================================================
+function copyLibelle() {
+  const text = document.getElementById('libelle-display').textContent;
+  if (!text) { showToast('Aucun libellé à copier.', 'error'); return; }
+
+  navigator.clipboard.writeText(text)
+    .then(() => showToast('Libellé copié !', 'success'))
+    .catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      showToast('Libellé copié !', 'success');
+    });
+}
+
+// ============================================================
+// VALIDER ET ENREGISTRER
+// ============================================================
+async function saveLibelle() {
+  const libelle  = document.getElementById('libelle-display').textContent.trim();
+  const prestation = document.getElementById('prestation').value.trim();
+  const prisBas  = parseFloat(document.getElementById('prix-bas').value)  || 0;
+  const prixHaut = parseFloat(document.getElementById('prix-haut').value) || 0;
+  const unite    = document.getElementById('unite').value;
+
+  if (!libelle)    { showToast('Aucun libellé à enregistrer.', 'error');   return; }
+  if (!prestation) { showToast('La prestation brute est vide.', 'error');  return; }
+
+  const btn = document.querySelector('[onclick="saveLibelle()"]');
+  btn.classList.add('btn-loading');
+  btn.disabled = true;
+
+  try {
+    await callGAS('save', { prestation, libelle, prix_bas: prisBas, prix_haut: prixHaut, unite });
+    showToast('Libellé enregistré dans la bibliothèque !', 'success');
+  } catch (err) {
+    showToast('Erreur enregistrement : ' + err.message, 'error');
+  } finally {
+    btn.classList.remove('btn-loading');
+    btn.disabled = false;
+  }
+}
+
+// ============================================================
+// BIBLIOTHÈQUE
+// ============================================================
+async function loadLibrary() {
+  const body    = document.getElementById('library-body');
+  const loading = document.getElementById('library-loading');
+  const empty   = document.getElementById('library-empty');
+
+  body.innerHTML = '';
+  loading.style.display = 'flex';
+  empty.style.display   = 'none';
+
+  try {
+    const data = await callGAS('list');
+    allLibelles = data.libelles || [];
+    allLibelles.sort((a, b) => (a.prestation || '').localeCompare(b.prestation || '', 'fr'));
+    renderLibrary(allLibelles);
+  } catch (err) {
+    showToast('Erreur chargement bibliothèque : ' + err.message, 'error');
+  } finally {
+    loading.style.display = 'none';
+  }
+}
+
+function renderLibrary(list) {
+  const body  = document.getElementById('library-body');
+  const empty = document.getElementById('library-empty');
+
+  body.innerHTML = '';
+
+  if (!list.length) { empty.style.display = 'flex'; return; }
+  empty.style.display = 'none';
+
+  list.forEach(row => {
+    const tr = document.createElement('tr');
+    const date = row.date ? new Date(row.date).toLocaleDateString('fr-FR') : '—';
+
+    tr.innerHTML = `
+      <td class="td-prestation">${escHtml(row.prestation || '')}</td>
+      <td class="td-libelle">${escHtml(row.libelle || '')}</td>
+      <td><span class="prix-badge">${formatEur(row.prix_bas)}</span></td>
+      <td><span class="prix-badge">${formatEur(row.prix_haut)}</span></td>
+      <td><span class="unit-badge">${escHtml(row.unite || '')}</span></td>
+      <td class="date-cell">${date}</td>
+      <td>
+        <div class="td-actions">
+          <button class="btn btn-ghost btn-sm" title="Copier" onclick="copyText('${escAttr(row.libelle)}')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+          <button class="btn btn-ghost btn-sm" title="Modifier" onclick='openEdit(${JSON.stringify(row)})'>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="btn btn-ghost btn-sm" title="Supprimer" onclick="deleteLibelle('${escAttr(row.id)}')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          </button>
+        </div>
+      </td>
+    `;
+    body.appendChild(tr);
+  });
+}
+
+function filterLibrary() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  if (!q) { renderLibrary(allLibelles); return; }
+  const filtered = allLibelles.filter(r =>
+    (r.prestation || '').toLowerCase().includes(q) ||
+    (r.libelle    || '').toLowerCase().includes(q)
+  );
+  renderLibrary(filtered);
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text)
+    .then(() => showToast('Libellé copié !', 'success'))
+    .catch(() => showToast('Erreur de copie.', 'error'));
+}
+
+// ============================================================
+// MODIFICATION
+// ============================================================
+function openEdit(row) {
+  document.getElementById('edit-id').value      = row.id || '';
+  document.getElementById('edit-libelle').value = row.libelle || '';
+  document.getElementById('edit-prix-bas').value  = row.prix_bas  ?? '';
+  document.getElementById('edit-prix-haut').value = row.prix_haut ?? '';
+
+  const sel  = document.getElementById('edit-unite');
+  const val  = (row.unite || 'm²').toLowerCase();
+  const opts = [...sel.options].map(o => o.value.toLowerCase());
+  sel.selectedIndex = opts.includes(val) ? opts.indexOf(val) : 0;
+
+  document.getElementById('modal-overlay').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').style.display = 'none';
+}
+
+async function saveEdit() {
+  const id       = document.getElementById('edit-id').value;
+  const libelle  = document.getElementById('edit-libelle').value.trim();
+  const prisBas  = parseFloat(document.getElementById('edit-prix-bas').value)  || 0;
+  const prixHaut = parseFloat(document.getElementById('edit-prix-haut').value) || 0;
+  const unite    = document.getElementById('edit-unite').value;
+
+  if (!id || !libelle) { showToast('Données invalides.', 'error'); return; }
+
+  const btn = document.querySelector('[onclick="saveEdit()"]');
+  btn.classList.add('btn-loading');
+  btn.disabled = true;
+
+  try {
+    await callGAS('update', { id, libelle, prix_bas: prisBas, prix_haut: prixHaut, unite });
+    showToast('Libellé modifié.', 'success');
+    closeModal();
+    loadLibrary();
+  } catch (err) {
+    showToast('Erreur modification : ' + err.message, 'error');
+  } finally {
+    btn.classList.remove('btn-loading');
+    btn.disabled = false;
+  }
+}
+
+// ============================================================
+// SUPPRESSION
+// ============================================================
+async function deleteLibelle(id) {
+  if (!id) return;
+  if (!confirm('Supprimer ce libellé définitivement ?')) return;
+
+  try {
+    await callGAS('delete', { id });
+    showToast('Libellé supprimé.', 'success');
+    loadLibrary();
+  } catch (err) {
+    showToast('Erreur suppression : ' + err.message, 'error');
+  }
+}
+
+// ============================================================
+// COMMUNICATION AVEC GOOGLE APPS SCRIPT
+// ============================================================
+async function callGAS(action, params = {}) {
+  const payload = { action, ...params };
+
+  const resp = await fetch(GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+  });
+
+  if (!resp.ok) throw new Error(`Erreur réseau (${resp.status})`);
+
+  const json = await resp.json();
+  if (json.error) throw new Error(json.error);
+
+  return json;
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+let toastTimer;
+function showToast(msg, type = '') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className   = 'toast' + (type ? ' ' + type : '') + ' show';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// UTILITAIRES
+// ============================================================
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+function escAttr(s) {
+  return String(s).replace(/'/g, "\\'").replace(/\n/g, ' ');
+}
+function formatEur(v) {
+  if (v === '' || v == null || isNaN(Number(v))) return '—';
+  return Number(v).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' €';
+}
+
+  </script>
+</body>
+</html>
