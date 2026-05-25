@@ -942,12 +942,14 @@ body {
       dans la constante GAS_URL ci-dessous.
    ============================================================ */
 
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbw3n93qc354yQyN4qv2glwqJEF1KBcEKtUpxc-Q_QW7sLrkibaShYT6wjt4GZXfms8J/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyQEFOYRLIRHu1RNWV-P4LtBGsXkuU4DT0BDNuh3Vr7tgOvgdr6-KsRuacrlxs32Nlz/exec';
 
 // ---- État de l'application ----
 let proposals    = [];   // historique des propositions IA
 let currentIndex = -1;   // index courant dans proposals
 let allLibelles  = [];   // cache de la bibliothèque
+const STYLES = ['standard', 'detaille', 'technique', 'court'];
+let styleIndex = 0;      // cycle de styles pour régénérer
 
 // ============================================================
 // NAVIGATION
@@ -993,10 +995,14 @@ async function regenerate() {
   btn.classList.add('btn-loading');
   btn.disabled = true;
 
+  styleIndex = (styleIndex + 1) % STYLES.length;
+  const style = STYLES[styleIndex];
+  const styleLabel = { standard: 'Standard', detaille: 'Détaillé', technique: 'Technique', court: 'Court' }[style];
   try {
-    const result = await callGAS('generate', { prestation });
+    const result = await callGAS('generate', { prestation, style });
     pushProposal(result);
     renderResult();
+    showToast('Style : ' + styleLabel, '');
   } catch (err) {
     showToast('Erreur lors de la régénération : ' + err.message, 'error');
   } finally {
@@ -1113,7 +1119,7 @@ async function loadLibrary() {
   try {
     const data = await callGAS('list');
     allLibelles = data.libelles || [];
-    allLibelles.sort((a, b) => (a.libelle || '').localeCompare(b.libelle || '', 'fr'));
+    allLibelles.sort((a, b) => new Date(b.date) - new Date(a.date));
     renderLibrary(allLibelles);
   } catch (err) {
     showToast('Erreur chargement bibliothèque : ' + err.message, 'error');
@@ -1121,6 +1127,9 @@ async function loadLibrary() {
     loading.style.display = 'none';
   }
 }
+
+// Stockage global des rows par id pour le bouton modifier
+const rowsById = {};
 
 function renderLibrary(list) {
   const cards = document.getElementById('library-cards');
@@ -1132,6 +1141,9 @@ function renderLibrary(list) {
   empty.style.display = 'none';
 
   list.forEach(row => {
+    // Stocke la row par id
+    rowsById[row.id] = row;
+
     const date = row.date ? new Date(row.date).toLocaleDateString('fr-FR') : '—';
     const card = document.createElement('div');
     card.className = 'lib-card';
@@ -1143,15 +1155,15 @@ function renderLibrary(list) {
           <span class="date-cell">${date}</span>
         </div>
         <div class="lib-card-actions">
-          <button class="btn btn-ghost btn-sm" title="Copier" onclick="copyText('${escAttr(row.libelle)}')">
+          <button class="btn btn-ghost btn-sm" onclick="copyText('${escAttr(row.libelle)}')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             Copier
           </button>
-          <button class="btn btn-ghost btn-sm" title="Modifier" onclick='openEdit(${JSON.stringify(row)})'>
+          <button class="btn btn-ghost btn-sm" onclick="openEditById('${escAttr(row.id)}')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             Modifier
           </button>
-          <button class="btn btn-ghost btn-sm" title="Supprimer" onclick="deleteLibelle('${escAttr(row.id)}')">
+          <button class="btn btn-ghost btn-sm" onclick="deleteLibelle('${escAttr(row.id)}')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
             Supprimer
           </button>
@@ -1161,6 +1173,24 @@ function renderLibrary(list) {
     `;
     cards.appendChild(card);
   });
+}
+
+function openEditById(id) {
+  const row = rowsById[id];
+  if (!row) { showToast('Libellé introuvable.', 'error'); return; }
+
+  document.getElementById('edit-id').value       = row.id || '';
+  document.getElementById('edit-libelle').value  = row.libelle || '';
+  document.getElementById('edit-prix-bas').value  = row.prix_bas ?? '';
+  document.getElementById('edit-prix-haut').value = row.prix_haut ?? '';
+
+  const sel  = document.getElementById('edit-unite');
+  const val  = (row.unite || 'm2').toLowerCase();
+  for (let i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value.toLowerCase() === val) { sel.selectedIndex = i; break; }
+  }
+
+  document.getElementById('modal-overlay').style.display = 'flex';
 }
 
 function filterLibrary() {
